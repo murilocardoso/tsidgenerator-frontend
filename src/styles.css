@@ -5,19 +5,20 @@
 
 body {
   @apply bg-gradient-to-r from-indigo-50 via-purple-50 to-pink-50 min-h-screen flex items-center justify-center;
+  font-size: 0.95rem; /* Reduz o tamanho da fonte em 5% */
 }
 
 .container {
-  @apply mx-auto p-8;
+  @apply mx-auto p-6;
 }
 
 .card {
-  @apply p-6 border rounded-xl shadow-2xl bg-white bg-opacity-80 backdrop-blur-md;
+  @apply p-5 border rounded-xl shadow-2xl bg-white bg-opacity-80 backdrop-blur-md;
 }
 
 .result-container {
-  @apply bg-gray-200 p-2 rounded mt-4;
-  min-height: 3rem; /* Defina a altura mínima do contêiner */
+  @apply bg-gray-200 p-2 rounded mt-3;
+  min-height: 1.75rem; /* Defina a altura mínima do contêiner */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -32,7 +33,7 @@ body {
 }
 
 .code-card {
-  @apply bg-gray-800 text-white font-mono p-4 rounded-xl text-sm;
+  @apply bg-gray-800 text-white font-mono p-3  rounded-xl text-sm;
 }
 
 button {
@@ -42,4 +43,8 @@ button {
 .result-content {
   display: flex;
   align-items: center;
+}
+
+.toast {
+  @apply text-xs fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-blue-500 text-white py-2 px-3 rounded shadow-md;
 }

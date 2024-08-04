@@ -1,14 +1,14 @@
-<div class="container mx-auto p-8">
+<div class="container mx-auto p-6">
 
-  <div class="text-center mb-8">
+  <div class="text-center mb-6">
     <h1 class="text-6xl font-extrabold text-gray-800">Boost your indexing efficiency with <br> TSID - Time Sortable Identifier </h1>
-    <h2 class="text-2xl text-gray-700 mt-4">Unique identifier that's time-sortable! It uses <a href="https://github.com/f4b6a3/tsid-creator" class="text-blue-600 underline" target="_blank">tsid-creator</a>, check it out!</h2>
+    <h2 class="text-2xl text-gray-700 mt-3">Unique identifier that's time-sortable! It uses <a href="https://github.com/f4b6a3/tsid-creator" class="text-blue-600 underline" target="_blank">tsid-creator</a>, check it out!</h2>
   </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
     <!-- Generate TSID -->
     <div class="card">
-      <h2 class="text-2xl font-bold mb-4 text-gray-800">Generate</h2>
+      <h2 class="text-xl font-bold mb-3 text-gray-800">Generate</h2>
       <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold p-2 w-full mb-4 rounded" (click)="generateTsid()">New One</button>
       <div class="result-container">
         <div class="result-content flex items-center justify-between w-full">
@@ -20,8 +20,8 @@
 
     <!-- Get As Long -->
     <div class="card">
-      <h2 class="text-2xl font-bold mb-4 text-gray-800">Get As Long</h2>
-      <input type="text" (ngModelChange)="onGetAsLongChange($event)" [maxlength]="TSID_STRING_MAX_SIZE" [(ngModel)]="tsidStringInput" class="border p-2 w-full mb-4 rounded" placeholder="Enter TSID as string">
+      <h2 class="text-xl font-bold mb-3 text-gray-800">Get As Long</h2>
+      <input type="text" (ngModelChange)="onGetAsLongChange($event)" [maxlength]="TSID_STRING_MAX_SIZE" [(ngModel)]="tsidStringInput" class="border p-2 w-full mb-3 rounded" placeholder="Enter TSID as string">
       <div class="result-container">
         <div class="result-content flex items-center justify-between w-full">
           <div class="result-text" [class.text-red-500]="tsidLongOuput == VALUE_WHEN_INVALID_ARGUMENT">{{ tsidLongOuput }}</div>
@@ -32,8 +32,8 @@
 
     <!-- Get As String -->
     <div class="card">
-      <h2 class="text-2xl font-bold mb-4 text-gray-800">Get As String</h2>
-      <input type="text" (ngModelChange)="onGetAsStringChange($event)" [maxlength]="TSID_LONG_MAX_SIZE" [(ngModel)]="tsidLongInput" class="border p-2 w-full mb-4 rounded" placeholder="Enter TSID as long">
+      <h2 class="text-xl font-bold mb-3 text-gray-800">Get As String</h2>
+      <input type="text" (ngModelChange)="onGetAsStringChange($event)" [maxlength]="TSID_LONG_MAX_SIZE" [(ngModel)]="tsidLongInput" class="border p-2 w-full mb-3 rounded" placeholder="Enter TSID as long">
       <div class="result-container">
         <div class="result-content flex items-center justify-between w-full">
           <div class="result-text" [class.text-red-500]="tsidStringOutput == VALUE_WHEN_INVALID_ARGUMENT">{{ tsidStringOutput }}</div>
@@ -44,8 +44,8 @@
   </div>
 
 
-  <div class="bg-white bg-opacity-80 backdrop-blur-md p-8 rounded-xl mt-8">
-    <div class="space-y-4">
+  <div class="bg-white bg-opacity-80 backdrop-blur-md p-6 rounded-xl mt-6">
+    <div class="space-y-3">
       <!-- Curl Command for Generate TSID -->
       <div class="card code-card relative">
         <code>{{ curlGenerate }}</code>
@@ -67,7 +67,7 @@
   </div>
 
   <!-- Toast Message -->
-  <div *ngIf="showToast" class="fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-blue-500 text-white py-2 px-4 rounded font-semibold shadow-md">
+  <div *ngIf="showToast" class="toast">
     Copied to clipboard!
   </div>
 </div>
