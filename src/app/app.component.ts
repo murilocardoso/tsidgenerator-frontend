@@ -23,10 +23,12 @@ export class AppComponent {
   tsidLongOuput: string = '';
   tsidStringInput: string = '';
   tsidStringOutput: string = '';
+  errorMessage: string = '';
+  showToast: boolean = false; // Para controlar a exibição do toast
 
-  curl_generate: string = 'curl -X GET '+ environment.tsidBaseUrl +'/new'
-  curl_from_string_to_long: string = 'curl -X GET '+ environment.tsidBaseUrl +'/STRING_TSID/as-long';
-  curl_from_long_to_string: string = 'curl -X GET '+ environment.tsidBaseUrl +'/LONG_TSID/as-string';
+  curlGenerate: string = 'curl -X GET '+ environment.tsidBaseUrl +'/new'
+  curlFromStringToLong: string = 'curl -X GET '+ environment.tsidBaseUrl +'/STRING_TSID/as-long';
+  curlFromLongToString: string = 'curl -X GET '+ environment.tsidBaseUrl +'/LONG_TSID/as-string';
 
   constructor(private generateTsId: GenerateTsidService,
     private convertTsidFromStringToLongService: ConvertTsidFromStringToLongService,
@@ -94,27 +96,47 @@ export class AppComponent {
   }
 
   atualizarCurls() {
-    this.curl_generate = `curl -X GET ${environment.tsidBaseUrl}/new`;
-    this.curl_from_string_to_long = `curl -X GET ${environment.tsidBaseUrl}/${String(this.tsidStringInput) || String(this.newTsidAsString) || String(this.tsidStringOutput) || 'STRING_TSID'}/as-long`;
-    this.curl_from_long_to_string = `curl -X GET ${environment.tsidBaseUrl}/${String(this.tsidLongInput) || String(this.newTsidAsLong) || String(this.tsidLongOuput) || 'LONG_TSID'}/as-string`;
+    this.curlGenerate = `curl -X GET ${environment.tsidBaseUrl}/new`;
+    this.curlFromStringToLong = `curl -X GET ${environment.tsidBaseUrl}/${String(this.tsidStringInput) || String(this.newTsidAsString) || String(this.tsidStringOutput) || 'STRING_TSID'}/as-long`;
+    this.curlFromLongToString = `curl -X GET ${environment.tsidBaseUrl}/${String(this.tsidLongInput) || String(this.newTsidAsLong) || String(this.tsidLongOuput) || 'LONG_TSID'}/as-string`;
+  }
+
+  copyNewTsidAsString() {
+    this.copyToClipboard(this.newTsidAsString);
+  }
+
+  copyTsidLongOutput() {
+    this.copyToClipboard(this.tsidLongOuput);
+  }
+
+  copyTsidStringOutput() {
+    this.copyToClipboard(this.tsidStringOutput);
   }
 
   copyGenerateCurlToClipboard() {
-    this.copyToClipboard(this.curl_generate);
+    this.copyToClipboard(this.curlGenerate);
   }
 
   copyFromStringToLongCurlToClipboard() {
-    this.copyToClipboard(this.curl_from_string_to_long);
+    this.copyToClipboard(this.curlFromStringToLong);
   }
 
   copyFromLongToStringCurlToClipboard() {
-    this.copyToClipboard(this.curl_from_long_to_string);
+    this.copyToClipboard(this.curlFromLongToString);
   }
 
   copyToClipboard(text: string) {
     navigator.clipboard.writeText(text).then(() => {
+      this.showToastMessage();
     }).catch(err => {
       console.error('Failed to copy: ', err);
     });
+  }
+
+  showToastMessage() {
+    this.showToast = true;
+    setTimeout(() => {
+      this.showToast = false;
+    }, 1500);
   }
 }

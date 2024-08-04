@@ -38,3 +38,8 @@ body {
 button {
   cursor: pointer;
 }
+
+.result-content {
+  display: flex;
+  align-items: center;
+}
