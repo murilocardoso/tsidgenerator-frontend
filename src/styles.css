@@ -16,12 +16,20 @@ body {
   @apply p-5 border rounded-xl shadow-2xl bg-white bg-opacity-80 backdrop-blur-md;
 }
 
+.card input {
+  @apply font-mono font-semibold;
+}
+
 .result-container {
-  @apply bg-gray-200 p-2 rounded mt-3;
-  min-height: 1.75rem; /* Defina a altura mínima do contêiner */
+  @apply bg-gray-200 p-2 rounded mt-3 font-mono;
+  min-height: 3.0rem; /* Defina a altura mínima do contêiner */
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.result-container button {
+  @apply font-sans;
 }
 
 .result-text {
@@ -33,7 +41,7 @@ body {
 }
 
 .code-card {
-  @apply bg-gray-800 text-white font-mono p-3  rounded-xl text-sm;
+  @apply bg-gray-800 text-white font-mono p-3 rounded-xl text-sm;
 }
 
 button {
@@ -46,5 +54,5 @@ button {
 }
 
 .toast {
-  @apply text-xs fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-blue-500 text-white py-2 px-3 rounded shadow-md;
+  @apply max-w-xs mx-auto text-xs fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-blue-500 text-white py-2 px-3 rounded shadow-md;
 }

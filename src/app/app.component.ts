@@ -26,13 +26,14 @@ export class AppComponent {
   errorMessage: string = '';
   showToast: boolean = false; // Para controlar a exibição do toast
 
-  curlGenerate: string = 'curl -X GET '+ environment.tsidBaseUrl +'/new'
-  curlFromStringToLong: string = 'curl -X GET '+ environment.tsidBaseUrl +'/STRING_TSID/as-long';
-  curlFromLongToString: string = 'curl -X GET '+ environment.tsidBaseUrl +'/LONG_TSID/as-string';
+  curlGet : string = 'curl -X GET';
+  curlGenerate: string = this.curlGet +' '+ environment.tsidBaseUrl +'/new';
+  curlFromStringToLong: string = this.curlGet +' '+ environment.tsidBaseUrl +'/STRING_TSID/as-long';
+  curlFromLongToString: string = this.curlGet +' '+  environment.tsidBaseUrl +'/LONG_TSID/as-string';
 
-  constructor(private generateTsId: GenerateTsidService,
-    private convertTsidFromStringToLongService: ConvertTsidFromStringToLongService,
-    private convertTsidFromLongToStringService: ConvertTsidFromLongToStringService
+  constructor(private readonly generateTsId: GenerateTsidService,
+    private readonly convertTsidFromStringToLongService: ConvertTsidFromStringToLongService,
+    private readonly convertTsidFromLongToStringService: ConvertTsidFromLongToStringService
   ) {}
 
   generateTsid() {
@@ -86,7 +87,7 @@ export class AppComponent {
   handleInvalidInputTsIdAsLong(): boolean {
     try {
       this.tsidLongInputAsLong = BigInt(this.tsidLongInput);
-    } catch (error) {
+    } catch {
       this.tsidLongInputAsLong = BigInt(0);
       this.tsidLongInput = "";
       this.tsidStringOutput = this.VALUE_WHEN_INVALID_ARGUMENT;
@@ -96,13 +97,17 @@ export class AppComponent {
   }
 
   atualizarCurls() {
-    this.curlGenerate = `curl -X GET ${environment.tsidBaseUrl}/new`;
-    this.curlFromStringToLong = `curl -X GET ${environment.tsidBaseUrl}/${String(this.tsidStringInput) || String(this.newTsidAsString) || String(this.tsidStringOutput) || 'STRING_TSID'}/as-long`;
-    this.curlFromLongToString = `curl -X GET ${environment.tsidBaseUrl}/${String(this.tsidLongInput) || String(this.newTsidAsLong) || String(this.tsidLongOuput) || 'LONG_TSID'}/as-string`;
+    this.curlGenerate = `${this.curlGet} ${environment.tsidBaseUrl}/new`;
+    this.curlFromStringToLong = `${this.curlGet} ${environment.tsidBaseUrl}/${String(this.tsidStringInput) || String(this.newTsidAsString) || String(this.tsidStringOutput) || 'STRING_TSID'}/as-long`;
+    this.curlFromLongToString = `${this.curlGet} ${environment.tsidBaseUrl}/${String(this.tsidLongInput) || String(this.newTsidAsLong) || String(this.tsidLongOuput) || 'LONG_TSID'}/as-string`;
   }
 
   copyNewTsidAsString() {
     this.copyToClipboard(this.newTsidAsString);
+  }
+
+  copyNewTsidAsLong() {
+    this.copyToClipboard(this.newTsidAsLong);
   }
 
   copyTsidLongOutput() {
