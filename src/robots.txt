@@ -1,2 +1,3 @@
 User-agent: *
 Allow: /
+Sitemap: https://www.tsidgenerator.com/sitemap.xml
