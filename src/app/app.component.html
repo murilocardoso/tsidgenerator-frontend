@@ -1,4 +1,4 @@
-<div class="container mx-auto p-6">
+<div class="container mx-auto p-6 mb-[50px] md:mb-0">
 
   <!-- Cabeçalho -->
   <div class="text-center mb-6">
@@ -74,7 +74,45 @@
   </div>
 
   <!-- Toast Message -->
-  <div *ngIf="showToast" class="toast">
+  <div *ngIf="showToast" class="toast bottom-[50px] md:bottom-4">
     Copied to clipboard!
   </div>
+
+  <!-- Bloco fixo no canto inferior direito -->
+  <div class="fixed z-50 text-xs
+              bottom-0 left-0 right-0 w-full
+              md:bottom-2 md:right-2 md:left-auto md:w-auto
+              bg-white border-t border-gray-300
+              md:bg-transparent md:border-none p-1">
+
+    <div class="flex flex-row justify-center items-center
+                space-x-2
+                md:bg-white md:border md:border-gray-300 md:rounded-xl md:shadow-lg
+                p-1 md:p-2 text-sm">
+
+        <!-- Buy Me a Coffee -->
+        <a href="https://buymeacoffee.com/murilocardoso" target="_blank"
+          class="flex items-center min-w-[80px] px-3 py-1 bg-yellow-500 text-white rounded hover:bg-yellow-600 transition">
+          <i class="fas fa-coffee mr-1.5"></i>
+          Coffee ☕
+        </a>
+
+        <!-- Pix -->
+        <button (click)="copyPixKey()"
+          (click)="isLargeScreen ? openQrModal() : copyPixKey()"
+          class="flex items-center min-w-[92px] px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700 transition">
+          <i class="fas fa-qrcode mr-1.5"></i>
+          🇧🇷 Pix 💸
+        </button>
+
+        <div *ngIf="showQrModal"
+          class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center"
+          (click)="closeQrModal()">
+          <div class="bg-white rounded-xl shadow-xl p-2" (click)="$event.stopPropagation()">
+            <img src="assets/qr-pix.png" alt="QR Code Pix" class="w-64 h-auto rounded" />
+          </div>
+        </div>
+      </div>
+  </div>
+
 </div>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { GenerateTsidService } from './services/generate-tsid.service';
 import { ConvertTsidFromLongToStringService } from './services/convert-tsid-from-long-to-string.service';
 import { ConvertTsidFromStringToLongService } from './services/convert-tsid-from-string-to-long.service';
@@ -31,10 +31,19 @@ export class AppComponent {
   curlFromStringToLong: string = this.curlGet +' '+ environment.tsidBaseUrl +'/STRING_TSID/as-long';
   curlFromLongToString: string = this.curlGet +' '+  environment.tsidBaseUrl +'/LONG_TSID/as-string';
 
+  showQrModal = false;
+  isLargeScreen = false;
+  private readonly chavePix = 'f4b09b4a-aaeb-4431-be64-55fc69a46d80';
+
+
   constructor(private readonly generateTsId: GenerateTsidService,
     private readonly convertTsidFromStringToLongService: ConvertTsidFromStringToLongService,
     private readonly convertTsidFromLongToStringService: ConvertTsidFromLongToStringService
   ) {}
+
+  ngOnInit() {
+    this.checkScreenSize();
+  }
 
   generateTsid() {
     this.generateTsId.execute()
@@ -144,4 +153,32 @@ export class AppComponent {
       this.showToast = false;
     }, 1500);
   }
+
+  copyPixKey(): void {
+    if (this.isLargeScreen)
+      return;
+
+    navigator.clipboard.writeText(this.chavePix).then(() => {
+      this.showToast = true
+      setTimeout(() => {
+        this.showToast = false;
+      }, 2500);
+    });
+  }
+
+  @HostListener('window:resize')
+  checkScreenSize() {
+    this.isLargeScreen = window.innerWidth >= 768;
+  }
+
+    openQrModal(): void {
+    this.showQrModal = true;
+  }
+
+  closeQrModal(): void {
+    this.showQrModal = false;
+  }
+
 }
+
+
