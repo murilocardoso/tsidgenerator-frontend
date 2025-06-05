@@ -10,7 +10,7 @@
   <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
     <!-- Generate TSID -->
     <div class="card">
-      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold p-2 w-full rounded" (click)="generateTsid()">Get a new one</button>
+      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold p-2 w-full rounded" (click)="generateTsid()">Get new TSID</button>
       <div class="result-container relative">
         <div class="result-content flex items-center justify-between w-full">
           <span class="result-text">{{ newTsidAsString }}</span>
@@ -27,8 +27,8 @@
 
     <!-- Get As Long -->
     <div class="card">
-      <h2 class="text-xl font-bold mb-3 text-gray-800">Get As Long</h2>
-      <input type="text" (ngModelChange)="onGetAsLongChange($event)" [maxlength]="TSID_STRING_MAX_SIZE" [(ngModel)]="tsidStringInput" class="border p-2 w-full mb-3 rounded" placeholder="Enter TSID as string">
+      <h2 class="text-xl font-bold mb-3 text-gray-800">Get long TSID from string</h2>
+      <input type="text" (ngModelChange)="onGetAsLongChange($event)" [maxlength]="TSID_STRING_MAX_SIZE" [(ngModel)]="tsidStringInput" class="border p-2 w-full mb-3 rounded" placeholder="Enter string TSID">
       <div class="result-container relative">
         <div class="result-content flex items-center justify-between w-full">
           <div class="result-text" [class.text-red-500]="tsidLongOuput == VALUE_WHEN_INVALID_ARGUMENT">{{ tsidLongOuput }}</div>
@@ -39,8 +39,8 @@
 
     <!-- Get As String -->
     <div class="card">
-      <h2 class="text-xl font-bold mb-3 text-gray-800">Get As String</h2>
-      <input type="text" (ngModelChange)="onGetAsStringChange($event)" [maxlength]="TSID_LONG_MAX_SIZE" [(ngModel)]="tsidLongInput" class="border p-2 w-full mb-3 rounded" placeholder="Enter TSID as long">
+      <h2 class="text-xl font-bold mb-3 text-gray-800">Get string TSID from long</h2>
+      <input type="text" (ngModelChange)="onGetAsStringChange($event)" [maxlength]="TSID_LONG_MAX_SIZE" [(ngModel)]="tsidLongInput" class="border p-2 w-full mb-3 rounded" placeholder="Enter long TSID">
       <div class="result-container relative">
         <div class="result-content flex items-center justify-between w-full">
           <div class="result-text" [class.text-red-500]="tsidStringOutput == VALUE_WHEN_INVALID_ARGUMENT">{{ tsidStringOutput }}</div>
